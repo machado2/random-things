@@ -1,0 +1,6 @@
+**/target/
+**/dist/
+**/.git/
+**/.angular/
+**/node_modules/
+**/*~
