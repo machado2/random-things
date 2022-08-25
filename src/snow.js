@@ -1,3 +1,5 @@
+import niceColors from 'nice-color-palettes';
+
 const particles = [];
 
 export function snowtick(canvas, ctx) {

@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Threetree } from './3dthree';
 import './index.css';
+import { Physicstree } from './phystree';
 import { Snowtree } from './snowtreecomponent';
 import { Spheretree } from './spheretree';
 
@@ -19,10 +20,13 @@ function Content() {
         case 2:
             content = <Threetree />;
             break;
+        case 3:
+            content = <Physicstree />;
+            break;
     }
     return <div className="content">
         {content}
-        <Pagination count={2} page={page} onChange={handleChange} />
+        <Pagination count={3} page={page} onChange={handleChange} />
     </div>;
 }
 

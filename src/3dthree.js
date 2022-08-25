@@ -24,7 +24,7 @@ function Branch(props) {
     const children = [];
     if (props.level < 5) {
         for (let i = 0; i < 3; i++) {
-            children.push(<Branch matprop={props.matprop} position={[0, len / 2, 0]} level={props.level + 1} color={color} />);
+            children.push(<Branch key={i} matprop={props.matprop} position={[0, len / 2, 0]} level={props.level + 1} color={color} />);
         }
     }
     return <>
