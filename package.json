@@ -8,6 +8,7 @@
     "@mui/material": "*",
     "@react-three/csg": "^1.1.1",
     "@react-three/drei": "^9.23.4",
+    "@react-three/fiber": "^8.6.0",
     "@react-three/rapier": "^0.6.5",
     "@testing-library/jest-dom": "*",
     "@testing-library/react": "*",
@@ -20,16 +21,17 @@
     "r3f-perf": "^6.4.4",
     "react": "*",
     "react-dom": "*",
-    "react-scripts": "*",
     "three": "^0.139.2",
     "typescript": "*",
     "web-vitals": "*"
   },
+  "peerDependencies": {
+    "@react-three/fiber": "*"
+  },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "cross-env GENERATE_SOURCEMAP=false react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +53,8 @@
   },
   "devDependencies": {
     "@types/three": "^0.143.1",
-    "cross-env": "^7.0.3"
+    "@vitejs/plugin-react": "*",
+    "cross-env": "^7.0.3",
+    "vite": "*"
   }
 }
