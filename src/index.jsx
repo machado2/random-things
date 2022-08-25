@@ -15,10 +15,10 @@ function Content() {
     let content;
     switch (page) {
         case 1:
-            content = <Snowtree />;
+            content = <Physicstree />;
             break;
         case 2:
-            content = <Threetree />;
+            content = <Snowtree />;
             break;
         case 3:
             content = <Physicstree />;
@@ -26,7 +26,7 @@ function Content() {
     }
     return <div className="content">
         {content}
-        <Pagination count={3} page={page} onChange={handleChange} />
+        <Pagination count={2} page={page} onChange={handleChange} />
     </div>;
 }
 

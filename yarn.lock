@@ -2138,8 +2138,9 @@ __metadata:
     react: "*"
     react-dom: "*"
     three: ^0.139.2
+    three-stdlib: ^2.14.3
     typescript: "*"
-    vite: "*"
+    vite: ^3.0.9
     web-vitals: "*"
   peerDependencies:
     "@react-three/fiber": "*"
@@ -3886,7 +3887,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:*":
+"vite@npm:^3.0.9":
   version: 3.0.9
   resolution: "vite@npm:3.0.9"
   dependencies:
