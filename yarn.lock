@@ -282,7 +282,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.16.7, @babel/runtime@npm:^7.17.2, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
+"@babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.12.5, @babel/runtime@npm:^7.16.7, @babel/runtime@npm:^7.17.2, @babel/runtime@npm:^7.17.8, @babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.5.5, @babel/runtime@npm:^7.7.6, @babel/runtime@npm:^7.8.7, @babel/runtime@npm:^7.9.2":
   version: 7.18.9
   resolution: "@babel/runtime@npm:7.18.9"
   dependencies:
@@ -885,9 +885,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@react-three/drei@npm:^9.23.4":
-  version: 9.23.6
-  resolution: "@react-three/drei@npm:9.23.6"
+"@react-three/drei@npm:^9.23.7":
+  version: 9.23.7
+  resolution: "@react-three/drei@npm:9.23.7"
   dependencies:
     "@babel/runtime": ^7.11.2
     "@react-spring/three": ^9.3.1
@@ -914,7 +914,7 @@ __metadata:
   peerDependenciesMeta:
     react-dom:
       optional: true
-  checksum: ed4ce289b616cfd0d32c7e5d7494ce240fc072bd4e17b8a171ef2b4bcd19ed359ebbf918724efeeb912876502821c0a7f079a18d754d69ea09f57bbc5b11dc79
+  checksum: 3f9292e4568e52b06cdfc5e0c035e4e6ee02ab3700e92f1367e4ffe687d6400d9b08bb2512608c7ce14bf47cddf64f80dbbfbdf39dcd70ffd5f9292d2fc01ee7
   languageName: node
   linkType: hard
 
@@ -949,6 +949,15 @@ __metadata:
     react-native:
       optional: true
   checksum: 45def56495ceb1b1daf6ff6faae65ec0b25f4a7c1d439107369b0dcfec33b530fbd720a5fc3799ecba17321d0b1e934404700dbbb320e7121d121c8f8e21b5b8
+  languageName: node
+  linkType: hard
+
+"@react-three/lgl@npm:^0.0.4":
+  version: 0.0.4
+  resolution: "@react-three/lgl@npm:0.0.4"
+  dependencies:
+    lgl-tracer: ^1.0.6
+  checksum: 645e33550ddf3a9f665ee52a0880b036cd3605bc09185ba278d918453bdcc1fbff28732860263703428a497a11c9497513f985d21bec878e4cc087201a9e5bdf
   languageName: node
   linkType: hard
 
@@ -1221,6 +1230,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/uuid@npm:^8.3.4":
+  version: 8.3.4
+  resolution: "@types/uuid@npm:8.3.4"
+  checksum: 6f11f3ff70f30210edaa8071422d405e9c1d4e53abbe50fdce365150d3c698fe7bbff65c1e71ae080cbfb8fded860dbb5e174da96fdbbdfcaa3fb3daa474d20f
+  languageName: node
+  linkType: hard
+
 "@types/webxr@npm:*":
   version: 0.5.0
   resolution: "@types/webxr@npm:0.5.0"
@@ -1320,6 +1336,22 @@ __metadata:
     clean-stack: ^2.0.0
     indent-string: ^4.0.0
   checksum: 1101a33f21baa27a2fa8e04b698271e64616b886795fd43c31068c07533c7b3facfcaf4e9e0cab3624bd88f729a592f1c901a1a229c9e490eafce411a8644b79
+  languageName: node
+  linkType: hard
+
+"ammo-debug-drawer@npm:^1.0.1":
+  version: 1.0.1
+  resolution: "ammo-debug-drawer@npm:1.0.1"
+  peerDependencies:
+    ammo.js: "*"
+  checksum: 75966dd472f3365bdf54e7e194f898a560d35505c1f9c5422cee84988cc1b5971f8a2ff52f28a85dcfd5f03f10af4d84187745e926b06b45aaafa5c55283d031
+  languageName: node
+  linkType: hard
+
+ammo.js@kripken/ammo.js:
+  version: 0.0.2
+  resolution: "ammo.js@https://github.com/kripken/ammo.js.git#commit=7a574978fb28164a0a1510831eae52958edb4265"
+  checksum: d81baf89e1fab79da0709432f575049721d0017db88f70d158c8fc16cfcb79366d4bc302d2fd34d95dcf989f571efaca3c9233edeab59ec0785ed20b9c36b3d5
   languageName: node
   linkType: hard
 
@@ -2120,8 +2152,9 @@ __metadata:
     "@emotion/styled": "*"
     "@mui/material": "*"
     "@react-three/csg": ^1.1.1
-    "@react-three/drei": ^9.23.4
+    "@react-three/drei": ^9.23.7
     "@react-three/fiber": "*"
+    "@react-three/lgl": ^0.0.4
     "@react-three/rapier": ^0.6.5
     "@testing-library/jest-dom": "*"
     "@testing-library/react": "*"
@@ -2131,15 +2164,19 @@ __metadata:
     "@types/react": "*"
     "@types/react-dom": "*"
     "@types/three": ^0.143.1
+    "@types/uuid": ^8.3.4
     "@vitejs/plugin-react": "*"
     cross-env: ^7.0.3
     nice-color-palettes: "*"
     r3f-perf: ^6.4.4
     react: "*"
     react-dom: "*"
+    react-router-dom: ^6.3.0
     three: ^0.139.2
     three-stdlib: ^2.14.3
-    typescript: "*"
+    typescript: ^4.7.4
+    use-ammojs: ^0.2.21
+    uuid: ^8.3.2
     vite: ^3.0.9
     web-vitals: "*"
   peerDependencies:
@@ -2347,6 +2384,15 @@ __metadata:
   dependencies:
     function-bind: ^1.1.1
   checksum: b9ad53d53be4af90ce5d1c38331e712522417d017d5ef1ebd0507e07c2fbad8686fffb8e12ddecd4c39ca9b9b47431afbb975b8abf7f3c3b82c98e9aad052792
+  languageName: node
+  linkType: hard
+
+"history@npm:^5.2.0":
+  version: 5.3.0
+  resolution: "history@npm:5.3.0"
+  dependencies:
+    "@babel/runtime": ^7.7.6
+  checksum: d73c35df49d19ac172f9547d30a21a26793e83f16a78386d99583b5bf1429cc980799fcf1827eb215d31816a6600684fba9686ce78104e23bd89ec239e7c726f
   languageName: node
   linkType: hard
 
@@ -2618,6 +2664,13 @@ __metadata:
   version: 0.4.5
   resolution: "ktx-parse@npm:0.4.5"
   checksum: f82d8b5dfd0ede05d5e4a2d90ad5114c83d8f708431e3fce2c3e6e0a0e1fe1b1649cb6f3de35b429ef636ce9a92a3897295198e94b46bba24bc3268c6ae9cc42
+  languageName: node
+  linkType: hard
+
+"lgl-tracer@npm:^1.0.6":
+  version: 1.1.8
+  resolution: "lgl-tracer@npm:1.1.8"
+  checksum: 5162199df8825ae1a5e98deeb387e53a22c68042f92b9cac199edd397613f20272d33502e60a3d701360d96b6e98fbdb13148d96356bc829e7b55eefaef6d699
   languageName: node
   linkType: hard
 
@@ -3283,6 +3336,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-router-dom@npm:^6.3.0":
+  version: 6.3.0
+  resolution: "react-router-dom@npm:6.3.0"
+  dependencies:
+    history: ^5.2.0
+    react-router: 6.3.0
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 77603a654f8a8dc7f65535a2e5917a65f8d9ffcb06546d28dd297e52adcc4b8a84377e0115f48dca330b080af2da3e78f29d590c89307094d36927d2b1751ec3
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.3.0":
+  version: 6.3.0
+  resolution: "react-router@npm:6.3.0"
+  dependencies:
+    history: ^5.2.0
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 7be673f5e72104be01e6ab274516bdb932efd93305243170690f6560e3bd1035dd1df3d3c9ce1e0f452638a2529f43a1e77dcf0934fc8031c4783da657be13ca
+  languageName: node
+  linkType: hard
+
 "react-transition-group@npm:^4.4.5":
   version: 4.4.5
   resolution: "react-transition-group@npm:4.4.5"
@@ -3714,7 +3791,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"three-stdlib@npm:^2.14.3":
+"three-stdlib@npm:^2.14.3, three-stdlib@npm:^2.4.0":
   version: 2.14.3
   resolution: "three-stdlib@npm:2.14.3"
   dependencies:
@@ -3801,7 +3878,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:*":
+"typescript@npm:^4.7.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
   bin:
@@ -3811,7 +3888,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@*#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
   version: 4.7.4
   resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=a1c5e5"
   bin:
@@ -3862,6 +3939,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"use-ammojs@npm:^0.2.21":
+  version: 0.2.21
+  resolution: "use-ammojs@npm:0.2.21"
+  dependencies:
+    ammo-debug-drawer: ^1.0.1
+    ammo.js: kripken/ammo.js
+    stats.js: ^0.17.0
+    three-stdlib: ^2.4.0
+  peerDependencies:
+    "@react-three/fiber": ^7.0.6
+    react: ">=16"
+    three: ^0.130.0
+  checksum: 8bc4e08c721eb68d985b247e42be377c1b2336e37171eab2f905add8019c20d71e4cc481c5237d3b9ef553cb4b2bb9c1b9c5be1410f2c0f9fe4805aa0927bc5f
+  languageName: node
+  linkType: hard
+
 "use-asset@npm:^1.0.4":
   version: 1.0.4
   resolution: "use-asset@npm:1.0.4"
@@ -3884,6 +3977,15 @@ __metadata:
   version: 3.10.0
   resolution: "utility-types@npm:3.10.0"
   checksum: 8f274415c6196ab62883b8bd98c9d2f8829b58016e4269aaa1ebd84184ac5dda7dc2ca45800c0d5e0e0650966ba063bf9a412aaeaea6850ca4440a391283d5c8
+  languageName: node
+  linkType: hard
+
+"uuid@npm:^8.3.2":
+  version: 8.3.2
+  resolution: "uuid@npm:8.3.2"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: 5575a8a75c13120e2f10e6ddc801b2c7ed7d8f3c8ac22c7ed0c7b2ba6383ec0abda88c905085d630e251719e0777045ae3236f04c812184b7c765f63a70e58df
   languageName: node
   linkType: hard
 

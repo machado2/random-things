@@ -2,7 +2,6 @@ import { OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import { useRef } from 'react';
 
-
 const angsize = Math.PI / 1.5;
 
 function angle() {
@@ -44,11 +43,10 @@ function Branch(props) {
 export function Threetree() {
 
     return <Canvas>
-        <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <pointLight position={[10, 10, -10]} />
         <Branch position={[0, -1, 0]} level={1} />
-        <mesh>
+        <mesh position={[0, 0, 0]}>
             <sphereGeometry args={[3]} />
             <meshPhysicalMaterial transmission="0.9" ior="0.97" />
         </mesh>
