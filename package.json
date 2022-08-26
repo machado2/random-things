@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@emotion/react": "*",
-    "@emotion/styled": "*",
-    "@mui/material": "*",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@mui/material": "^5.10.2",
     "@react-three/csg": "^1.1.1",
     "@react-three/drei": "^9.23.7",
     "@react-three/fiber": "*",
-    "@react-three/lgl": "^0.0.4",
     "@react-three/rapier": "^0.6.5",
+    "@testing-library/dom": "^8.17.1",
     "@testing-library/jest-dom": "*",
     "@testing-library/react": "*",
     "@testing-library/user-event": "*",
@@ -19,7 +19,6 @@
     "@types/react": "*",
     "@types/react-dom": "*",
     "@types/uuid": "^8.3.4",
-    "ammo.js": "^0.0.10",
     "nice-color-palettes": "*",
     "r3f-perf": "^6.4.4",
     "react": "*",
@@ -32,7 +31,8 @@
     "web-vitals": "*"
   },
   "peerDependencies": {
-    "@react-three/fiber": "*"
+    "@react-three/fiber": "*",
+    "ammo.js": "*"
   },
   "scripts": {
     "start": "vite",

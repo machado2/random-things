@@ -1,17 +1,12 @@
 
 
-import { Debug, Physics, RigidBody, InstancedRigidBodies, InstancedRigidBodyApi, CuboidCollider, Vector3Array } from '@react-three/rapier';
-import { OrbitControls, Cylinder, Box, Sphere, Cone, Plane } from '@react-three/drei';
+import { Cone, Cylinder, OrbitControls, Plane } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
-import React, { forwardRef, useRef, useMemo, useEffect, useState, useContext } from 'react';
+import { Physics, RigidBody, Vector3Array } from '@react-three/rapier';
 import niceColors from 'nice-color-palettes';
-import * as THREE from 'three';
-import { Color } from 'three';
-import { Hollowsphere } from './hollowsphere'
 import { Perf, usePerf } from 'r3f-perf';
-import { jsx } from '@emotion/react';
-import { MeshBasicMaterial } from 'three';
-import * as uuid from 'uuid'
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import * as uuid from 'uuid';
 
 const halfpi = Math.PI / 2
 const angsize = Math.PI / 1.5
