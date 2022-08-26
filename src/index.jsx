@@ -1,52 +1,57 @@
 import { CircularProgress, Pagination } from '@mui/material';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
+import {
+    BrowserRouter, Navigate, Route, Routes, useNavigate,
+    useParams
+} from "react-router-dom";
 import { Threetree } from './3dthree';
+import { Ammotree } from './ammotree';
 import './index.css';
 import { Physicstree } from './phystree';
 import { Snowtree } from './snowtreecomponent';
-import { Spheretree } from './spheretree';
-import { Ammotree } from './ammotree'
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-    useNavigate,
-    useParams
-} from "react-router-dom";
 
-function ContentFromCurrentPage(props) {
+function PagedContent(props) {
     const params = useParams()
-    const page = params.idpage ?? 1
-    return props.contents[page-1]
+    const navigate = useNavigate()
+    const page = parseInt(params.idpage ?? 1)
+    return <>
+        {props.contents[page-1]}
+        <Pagination count={props.contents.length} defaultPage={page} onChange={(_, v) => navigate(props.urlprefix + v)} />
+    </>
 }
+
+function routeList(contents, urlprefix) {
+    return <Route path={urlprefix}>
+        <Route path=":idpage" element={<PagedContent contents={contents} urlprefix={urlprefix} />} />
+        <Route index element={<Navigate to={urlprefix + '1'} />} />
+    </Route>
+}   
 
 function Content() {
     
-    const navigate = useNavigate()
     const params = useParams()
-
-    const page = params.idpage ?? 1
-
 
     const contents = [
         <Snowtree />,
         <Threetree />,
         <Physicstree />,
+    ]
+
+    const failedExperiments = [
         <Ammotree />
     ]
-    const k = contents[0]
+
     return <div className="content">
         <Suspense fallback={<CircularProgress />}>
             <Routes>
-                <Route path="/page/:idpage" element={<ContentFromCurrentPage contents={contents} />} />
-                <Route path="/" element={contents[0]} />
+                {routeList(contents, "/page/")}
+                {routeList(failedExperiments, "/fail/")}
+                <Route path="/" element={<Navigate to="/page/1" />} />
             </Routes>
-            <Pagination count={contents.length} defaultPage={page} onChange={(_, v) => navigate('/page/' + v)} />            
         </Suspense>
     </div>;
 }
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<BrowserRouter><Content /></BrowserRouter>);

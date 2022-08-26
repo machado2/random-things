@@ -33,3 +33,4 @@ dist/
 !.yarn/versions
 
 .idea/
+/yarn.lock

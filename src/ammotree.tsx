@@ -51,18 +51,42 @@ function Branch(props: any) {
 
 const rndz = (multiplier: number) => (Math.random() - 0.5) * multiplier
 
+function PhysicalBall({ position, pressure } = {}) {
+    const [ref] = useSoftBody(() => ({
+      type: SoftBodyType.TRIMESH,
+      pressure
+    }))
+  
+    return (
+      <Sphere args={[0.5, 16, 16]} position={position} ref={ref} castShadow>
+        <meshPhysicalMaterial attach="material" color="red" />
+      </Sphere>
+    )
+  }
+
+function Snowflakey(props: { position: Vector3 }) {
+    return <PhysicalBall position={props.position} pressure={2} />
+}
+
 function Snowflake(props: { position: Vector3 }) {
     const radius = 0.1
     const rbottom = 0.05
     const vel: Vector3 = new Vector3(rndz(2), rndz(2), rndz(2))
     const material = <meshPhysicalMaterial transmission={0.9} ior={0.5} color={niceColors[0][Math.floor(Math.random() * 5)]} />
+
+    const [ref] = useSoftBody(() => ({
+        type: SoftBodyType.TRIMESH,
+        pressure : 6
+      }))
+
+      /*
     const [ref, api] = useRigidBody(() => ({
         bodyType: BodyType.DYNAMIC,
         shapeType: ShapeType.SPHERE
     })) as [Ref<Mesh>, RigidbodyApi]
     api.setLinearVelocity(vel)
-
-    return <Sphere position={props.position} ref={ref} args={[radius]}>{material}</Sphere>
+*/
+    return <Sphere position={props.position} ref={ref} args={[radius, 8, 8]}>{material}</Sphere>
 }
 
 
@@ -114,7 +138,7 @@ function Snow(): JSX.Element {
     })
 
     useEffect(() => {
-        const timer = setInterval(() => setShouldCreateNew(true), 1000)
+        const timer = setInterval(() => setShouldCreateNew(true), 100)
         return () => clearInterval(timer)
     }, [true])
 
@@ -152,7 +176,7 @@ export function Ammotree() {
         <Stars />
         <pointLight position={[10, 10, 10]} />
         <pointLight position={[10, 10, -10]} />
-        <Physics gravity={[0, -1, 0]}>
+        <Physics>
             <Ground />
             <Branch position={[0, -1, 0]} level={1} />
             <Snow />
