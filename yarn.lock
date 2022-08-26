@@ -1355,6 +1355,13 @@ ammo.js@kripken/ammo.js:
   languageName: node
   linkType: hard
 
+"ammo.js@npm:^0.0.10":
+  version: 0.0.10
+  resolution: "ammo.js@npm:0.0.10"
+  checksum: 84efde0c6010dc91a6a07d28d0c16e26446b2fbc0abdac5ba0bbc4eb76078cc52ed049a4c9f76102d71c9d074b6a91bf29baeb00ac199cf604c2310426f3b47d
+  languageName: node
+  linkType: hard
+
 "ansi-regex@npm:^5.0.1":
   version: 5.0.1
   resolution: "ansi-regex@npm:5.0.1"
@@ -2166,6 +2173,7 @@ ammo.js@kripken/ammo.js:
     "@types/three": ^0.143.1
     "@types/uuid": ^8.3.4
     "@vitejs/plugin-react": "*"
+    ammo.js: ^0.0.10
     cross-env: ^7.0.3
     nice-color-palettes: "*"
     r3f-perf: ^6.4.4
