@@ -1,47 +1,52 @@
-import { OrbitControls } from '@react-three/drei'
+import { MeshReflectorMaterial, OrbitControls } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import * as THREE from 'three'
+import { MeshBasicMaterial, MeshPhysicalMaterial } from 'three'
 
 import { snowtick } from './snow'
 import { drawtree } from './tree'
 
-function Sphere(props) {
-    const ctx = useRef(null);
-    const texture = useRef(null);
-    const material = useRef(null);
 
-    useFrame((state, delta) => { 
-        if (props.canvas.current) {
-            const canvas = props.canvas.current;
-            if (ctx.current == null) {
-                canvas.width = 640;
-                canvas.height = 480;
-                ctx.current = canvas.getContext("2d");
-                drawtree(canvas, ctx.current);
-            }
-            if (texture.current == null) {
-                texture.current = new THREE.CanvasTexture(canvas);
-                material.current.map = texture.current;
-            }
-            snowtick(canvas, ctx.current);
-            texture.current.needsUpdate = true;
-        }
-     });
+class Snowtreetexture {    
+    constructor (canvas) {
+        this.canvas = canvas
+        this.context = canvas.getContext("2d")
+        drawtree(canvas, this.context)        
+        this.texture = new THREE.CanvasTexture(canvas)
+    }
+
+    tick() {
+        snowtick(this.canvas, this.context)
+        this.texture.needsUpdate = true
+    }
+}
+
+function Sphere(props) {
+    const snowTreeTexture = useRef()
+    const material = useRef()
+    useEffect(() => {
+        snowTreeTexture.current = new Snowtreetexture(props.canvas.current)
+        material.current.bumpMap = snowTreeTexture.current.texture
+        material.current.map = snowTreeTexture.current.texture
+    }, [true])
+    useFrame((_state, _delta) => {
+        snowTreeTexture.current.tick()
+    });
     return <mesh position={[0, 0, 0]}>
         <sphereGeometry args={[2]} />
-        <meshBasicMaterial ref={material} />
+        <meshStandardMaterial ref={material} />
     </mesh>;
 }
 
 export function Spheretree() {
     const canvas = useRef(null);
     return <>
-        <canvas style={{ "display": "none" }} ref={canvas} />
+        <canvas width="1920" height="1080" style={{ "display": "none" }} ref={canvas} />
         <Canvas>
-            <ambientLight />
-            <pointLight position={[10, 10, 10]} />
-            <Sphere canvas={canvas} />
+        <pointLight position={[10, 10, 10]} />
+        <pointLight position={[10, 10, -10]} />
+            <Sphere canvas={canvas} rotate-y={Math.PI / 2} />
             <OrbitControls />
         </Canvas>
     </>;

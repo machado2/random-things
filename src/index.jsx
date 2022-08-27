@@ -10,6 +10,7 @@ import { Ammotree } from './ammotree';
 import './index.css';
 import { Physicstree } from './phystree';
 import { Snowtree } from './snowtreecomponent';
+import { Spheretree } from './spheretree';
 
 function PagedContent(props) {
     const params = useParams()
@@ -39,7 +40,8 @@ function Content() {
     ]
 
     const failedExperiments = [
-        <Ammotree />
+        <Ammotree />,
+        <Spheretree />
     ]
 
     return <div className="content">
