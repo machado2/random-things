@@ -1,11 +1,11 @@
-import { BodyType, Physics, ShapeType, SoftBodyType, useSoftBody, PhysicsStats, useRigidBody, SoftbodyApi, RigidbodyApi } from 'use-ammojs'
-import { OrbitControls, Cylinder, Box, Sphere, Cone, Plane, Stars } from '@react-three/drei';
+import { Cylinder, OrbitControls, Plane, Sphere, Stars } from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
-import React, { forwardRef, useRef, useMemo, useEffect, useState, useContext, Ref, MutableRefObject } from 'react';
 import niceColors from 'nice-color-palettes';
 import { Perf, usePerf } from 'r3f-perf';
-import * as uuid from 'uuid'
-import { Mesh, Vector3 } from 'three';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { Vector3 } from 'three';
+import { BodyType, Physics, ShapeType, SoftBodyType, useRigidBody, useSoftBody } from 'use-ammojs';
+import * as uuid from 'uuid';
 
 const halfpi = Math.PI / 2
 const angsize = Math.PI / 1.5
@@ -51,27 +51,8 @@ function Branch(props: any) {
 
 const rndz = (multiplier: number) => (Math.random() - 0.5) * multiplier
 
-function PhysicalBall({ position, pressure } = {}) {
-    const [ref] = useSoftBody(() => ({
-      type: SoftBodyType.TRIMESH,
-      pressure
-    }))
-  
-    return (
-      <Sphere args={[0.5, 16, 16]} position={position} ref={ref} castShadow>
-        <meshPhysicalMaterial attach="material" color="red" />
-      </Sphere>
-    )
-  }
-
-function Snowflakey(props: { position: Vector3 }) {
-    return <PhysicalBall position={props.position} pressure={2} />
-}
-
 function Snowflake(props: { position: Vector3 }) {
     const radius = 0.1
-    const rbottom = 0.05
-    const vel: Vector3 = new Vector3(rndz(2), rndz(2), rndz(2))
     const material = <meshPhysicalMaterial transmission={0.9} ior={0.5} color={niceColors[0][Math.floor(Math.random() * 5)]} />
 
     const [ref] = useSoftBody(() => ({
@@ -79,42 +60,7 @@ function Snowflake(props: { position: Vector3 }) {
         pressure : 6
       }))
 
-      /*
-    const [ref, api] = useRigidBody(() => ({
-        bodyType: BodyType.DYNAMIC,
-        shapeType: ShapeType.SPHERE
-    })) as [Ref<Mesh>, RigidbodyApi]
-    api.setLinearVelocity(vel)
-*/
     return <Sphere position={props.position} ref={ref} args={[radius, 8, 8]}>{material}</Sphere>
-}
-
-
-function Snowflake_(props: { position: Vector3 }) {
-    const radius = 0.1
-    const rbottom = 0.05
-    const vel: Vector3 = new Vector3(rndz(2), rndz(2), rndz(2))
-    const material = <meshPhysicalMaterial transmission={0.9} ior={0.5} color={niceColors[0][Math.floor(Math.random() * 5)]} />
-    const [ref, api] = useRigidBody(() => ({
-        bodyType: BodyType.DYNAMIC,
-        shapeType: ShapeType.BOX
-    })) as [Ref<Mesh>, RigidbodyApi]
-    api.setLinearVelocity(vel)
-
-    return <mesh ref={ref}>
-        {/*@ts-ignore*/}
-        <Cone position={[0, radius / 2, 0]} args={[rbottom, radius]}>{material}</Cone>
-        {/*@ts-ignore*/}
-        <Cone position={[0, 0, radius / 2]} args={[rbottom, radius]} rotation={[halfpi, 0, 0]}>{material}</Cone>
-        {/*@ts-ignore*/}
-        <Cone position={[0, -radius / 2, 0]} args={[rbottom, radius]} rotation={[Math.PI, 0, 0]}>{material}</Cone>
-        {/*@ts-ignore*/}
-        <Cone position={[0, 0, -radius / 2]} args={[rbottom, radius]} rotation={[-halfpi, 0, 0]}>{material}</Cone>
-        {/*@ts-ignore*/}
-        <Cone position={[-radius / 2, 0, 0]} args={[rbottom, radius]} rotation={[0, 0, halfpi]}>{material}</Cone>
-        {/*@ts-ignore*/}
-        <Cone position={[radius / 2, 0, 0]} args={[rbottom, radius]} rotation={[0, 0, -halfpi]}>{material}</Cone>
-    </mesh>
 }
 
 let lastfps: number[] = []
@@ -156,21 +102,6 @@ function Ground() {
 }
 
 export function Ammotree() {
-    /*
-    return <Canvas>
-        <Physics>
-            <ambientLight />
-            <pointLight position={[10, 10, 10]} />
-            <pointLight position={[10, 10, -10]} />
-            <group scale={10}>
-                <Snowflake />
-            </group>
-        </Physics>
-        <OrbitControls />
-    </Canvas>
-*/
-
-
     return <Canvas>
         <ambientLight />
         <Stars />
