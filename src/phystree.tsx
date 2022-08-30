@@ -1,20 +1,21 @@
-
-
-import { Cone, Cylinder, OrbitControls, Plane, Stars, useTexture } from '@react-three/drei';
+import { Cone, Cylinder, OrbitControls, Stars, useTexture } from '@react-three/drei';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Physics, RigidBody, Vector3Array } from '@react-three/rapier';
 import niceColors from 'nice-color-palettes';
 import { Perf, usePerf } from 'r3f-perf';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { MeshPhysicalMaterial, MirroredRepeatWrapping, RepeatWrapping, Texture, TextureLoader } from 'three';
+import { MeshPhysicalMaterial, MirroredRepeatWrapping, Texture, TextureLoader } from 'three';
+import { SimplexNoise } from 'three-stdlib';
 import * as uuid from 'uuid';
-import groundTextureUrl from './assets/TexturesCom_Grass0095_M.jpg'
+import groundTextureUrl from './assets/TexturesCom_Grass0095_M.jpg';
 
-import woodAlbedoUrl from './assets/TexturesCom_Wood_BarkWillow_0.3x0.6_1K_albedo.jpg'
-import woodAOurl from './assets/TexturesCom_Wood_BarkWillow_0.3x0.6_1K_ao.jpg'
-import woodHeightUrl from './assets/TexturesCom_Wood_BarkWillow_0.3x0.6_1K_height.jpg'
-import woodNormalUrl from './assets/TexturesCom_Wood_BarkWillow_0.3x0.6_1K_normal.jpg'
-import woodRoughnessUrl from './assets/TexturesCom_Wood_BarkWillow_0.3x0.6_1K_roughness.jpg'
+import woodAlbedoUrl from './assets/TexturesCom_Wood_BarkWillow_0.3x0.6_1K_albedo.jpg';
+import woodAOurl from './assets/TexturesCom_Wood_BarkWillow_0.3x0.6_1K_ao.jpg';
+import woodHeightUrl from './assets/TexturesCom_Wood_BarkWillow_0.3x0.6_1K_height.jpg';
+import woodNormalUrl from './assets/TexturesCom_Wood_BarkWillow_0.3x0.6_1K_normal.jpg';
+import woodRoughnessUrl from './assets/TexturesCom_Wood_BarkWillow_0.3x0.6_1K_roughness.jpg';
+import { Ground } from './Ground';
+
 
 const halfpi = Math.PI / 2
 const angsize = Math.PI / 1.5
@@ -118,20 +119,6 @@ function Snow(): JSX.Element {
     return <>{spheres}</>
 }
 
-function _SnowFlakeDebug() {
-    return <Canvas>
-        <Physics>
-            <ambientLight />
-            <pointLight position={[10, 10, 10]} />
-            <pointLight position={[10, 10, -10]} />
-            <group scale={10}>
-                <Snowflake position={[0, 0, 0]} />
-            </group>
-        </Physics>
-        <OrbitControls />
-    </Canvas>
-}
-
 function WoodTree() {
     const woodmaps: object = useTexture({
         map: woodAlbedoUrl,
@@ -146,26 +133,35 @@ function WoodTree() {
         txt.wrapT = MirroredRepeatWrapping
     }
     const wood = new MeshPhysicalMaterial({ ...woodmaps, displacementScale: 0.02 })
-    return <Branch position={[0, -1, 0]} level={1} matprop={wood} />
+    return <Branch position={[0, 0, 0]} level={1} matprop={wood} />
+}
+
+const noise = new SimplexNoise()
+
+function heightFunction(x: number, z: number) {
+    let y = 1 * noise.noise(x / 20, z / 20)
+    y += 0.2 * noise.noise(x, z)
+   // y += 2 * noise.noise(x / 10, z / 10)
+    return y
+}
+
+function GroundWithTexture() {
+    const colorMap = useLoader(TextureLoader, groundTextureUrl)
+    colorMap.repeat.set(5, 5)
+    colorMap.wrapS = MirroredRepeatWrapping
+    colorMap.wrapT = MirroredRepeatWrapping
+    return <Ground heightFunction={heightFunction} width={30} height={30} widthSegments={30} heightSegments={30}>
+        <meshStandardMaterial map={colorMap} />
+    </Ground>
 }
 
 export function Physicstree() {
-
-    const colorMap = useLoader(TextureLoader, groundTextureUrl)
-    colorMap.repeat.set(200, 200)
-    colorMap.wrapS = MirroredRepeatWrapping
-    colorMap.wrapT = MirroredRepeatWrapping
-
-    return <Canvas>
+    return <Canvas camera={{ position: [0, 4, 5] }}>
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
         <pointLight position={[10, 10, -10]} />
-        <Physics gravity={[0, -1, 0]}>
-            <RigidBody>
-                <Plane args={[1000, 1000]} position-y={-1} rotation-x={-halfpi}>
-                    <meshPhysicalMaterial map={colorMap} />
-                </Plane>
-            </RigidBody>
+        <Physics gravity={[0, -9.8, 0]}>
+            <GroundWithTexture />
             <WoodTree />
             <Snow />
             <Perf headless />
