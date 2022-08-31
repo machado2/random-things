@@ -1,10 +1,10 @@
-import { Cone, Cylinder, OrbitControls, Stars, useTexture } from '@react-three/drei';
-import { Canvas, useFrame, useLoader } from '@react-three/fiber';
+import { AdaptiveDpr, AdaptiveEvents, Box, Cone, Cylinder, OrbitControls, Sphere, Stars, useTexture } from '@react-three/drei';
+import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
 import { Physics, RigidBody, Vector3Array } from '@react-three/rapier';
 import niceColors from 'nice-color-palettes';
 import { Perf, usePerf } from 'r3f-perf';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { MeshPhysicalMaterial, MirroredRepeatWrapping, Texture, TextureLoader } from 'three';
+import React, { forwardRef, Ref, RefObject, useEffect, useMemo, useRef, useState } from 'react';
+import { Mesh, MeshPhysicalMaterial, MirroredRepeatWrapping, Object3D, Raycaster, Texture, TextureLoader, Vector3 } from 'three';
 import { SimplexNoise } from 'three-stdlib';
 import * as uuid from 'uuid';
 import groundTextureUrl from './assets/TexturesCom_Grass0095_M.jpg';
@@ -57,7 +57,7 @@ function Branch(props: any) {
             <group>
                 <mesh position={[0, len / 2, 0]} castShadow>
                     <RigidBody type="fixed">
-                        <Cylinder args={[radius2, radius, len]} material={material} />
+                        <Cylinder args={[radius2, radius, len]} material={material} castShadow receiveShadow />
                     </RigidBody>
                     {children}
                 </mesh>
@@ -75,19 +75,17 @@ function Snowflake(props: { position: Vector3Array }) {
     const vel: Vector3Array = [rndz(2), rndz(2), rndz(2)]
     const avel: Vector3Array = [rndz(2), rndz(2), rndz(2)]
     const material = <meshPhysicalMaterial transmission={0.9} ior={0.5} color={niceColors[0][Math.floor(Math.random() * 5)]} />
+
+    const fcone = (position: Vector3Array, rotation: Vector3Array) =>
+        <Cone position={position} args={[rbottom, radius]} rotation={rotation} castShadow receiveShadow>{material}</Cone>
+
     return <RigidBody position={props.position} linearDamping={2} linearVelocity={vel} angularVelocity={avel}>
-        {/*@ts-ignore*/}
-        <Cone position={[0, radius / 2, 0]} args={[rbottom, radius]}>{material}</Cone>
-        {/*@ts-ignore*/}
-        <Cone position={[0, 0, radius / 2]} args={[rbottom, radius]} rotation={[halfpi, 0, 0]}>{material}</Cone>
-        {/*@ts-ignore*/}
-        <Cone position={[0, -radius / 2, 0]} args={[rbottom, radius]} rotation={[Math.PI, 0, 0]}>{material}</Cone>
-        {/*@ts-ignore*/}
-        <Cone position={[0, 0, -radius / 2]} args={[rbottom, radius]} rotation={[-halfpi, 0, 0]}>{material}</Cone>
-        {/*@ts-ignore*/}
-        <Cone position={[-radius / 2, 0, 0]} args={[rbottom, radius]} rotation={[0, 0, halfpi]}>{material}</Cone>
-        {/*@ts-ignore*/}
-        <Cone position={[radius / 2, 0, 0]} args={[rbottom, radius]} rotation={[0, 0, -halfpi]}>{material}</Cone>
+        {fcone([0, radius / 2, 0], [0, 0, 0])}
+        {fcone([0, 0, radius / 2], [halfpi, 0, 0])}
+        {fcone([0, -radius / 2, 0], [Math.PI, 0, 0])}
+        {fcone([0, 0, -radius / 2], [-halfpi, 0, 0])}
+        {fcone([-radius / 2, 0, 0], [0, 0, halfpi])}
+        {fcone([radius / 2, 0, 0], [0, 0, -halfpi])}
     </RigidBody>
 }
 
@@ -119,7 +117,11 @@ function Snow(): JSX.Element {
     return <>{spheres}</>
 }
 
-function WoodTree() {
+function WoodTree(props: { position: Vector3Array, groundRef: RefObject<Mesh> }) {
+
+    const [position, setPosition] = useState<Vector3Array>()
+    const countDownRef = useRef<number>(10)
+    const groundRef = props.groundRef
     const woodmaps: object = useTexture({
         map: woodAlbedoUrl,
         displacementMap: woodHeightUrl,
@@ -127,47 +129,93 @@ function WoodTree() {
         roughnessMap: woodRoughnessUrl,
         aoMap: woodAOurl,
     })
+    useFrame(() => {
+        if (!position) {
+            if (countDownRef.current > 0) {
+                countDownRef.current--
+                return
+            }
+            const [x, _, z] = props.position
+            const yhits = []
+            for (let x1 = -0.1; x1 <= 0.1; x1 += 0.1) {
+                for (let z1 = -0.1; z1 <= 0.1; z1 += 0.1) {
+                    const ray = new Raycaster(new Vector3(x + x1, 100, z + z1), new Vector3(0, -1, 0))
+                    const intersect = ray.intersectObject(groundRef.current as Object3D)
+                    if (intersect.length == 1) {
+                        yhits.push(intersect[0].point.y)
+                    }
+                }
+            }
+            if (yhits.length > 0) { 
+                const y = yhits[Math.floor(yhits.length / 2)]
+                setPosition([x, y, z])
+            }
+        }
+    })
+
+    if (!position) {
+        return <></>
+    }
+
     for (let txt of Object.values(woodmaps) as Texture[]) {
         txt.repeat.set(1, 1)
         txt.wrapS = MirroredRepeatWrapping
         txt.wrapT = MirroredRepeatWrapping
     }
     const wood = new MeshPhysicalMaterial({ ...woodmaps, displacementScale: 0.02 })
-    return <Branch position={[0, 0, 0]} level={1} matprop={wood} />
+    return <Branch position={position} level={1} matprop={wood} />
 }
 
 const noise = new SimplexNoise()
-
 function heightFunction(x: number, z: number) {
     let y = 1 * noise.noise(x / 20, z / 20)
     y += 0.2 * noise.noise(x, z)
-   // y += 2 * noise.noise(x / 10, z / 10)
-    return y
+    // y += 2 * noise.noise(x / 10, z / 10)
+    return y;
 }
 
-function GroundWithTexture() {
+const GroundWithTexture = forwardRef((_props, ref: Ref<Mesh>) => {
     const colorMap = useLoader(TextureLoader, groundTextureUrl)
     colorMap.repeat.set(5, 5)
     colorMap.wrapS = MirroredRepeatWrapping
     colorMap.wrapT = MirroredRepeatWrapping
-    return <Ground heightFunction={heightFunction} width={30} height={30} widthSegments={30} heightSegments={30}>
-        <meshStandardMaterial map={colorMap} />
+    return <Ground ref={ref} heightFunction={heightFunction} width={30} height={30} widthSegments={30} heightSegments={30}>
+        <meshPhysicalMaterial map={colorMap} />
     </Ground>
+})
+
+function _Forest(props: { groundRef: RefObject<Mesh> }) {
+    return <>
+        <WoodTree position={[-5, 5, -5]} groundRef={props.groundRef} />
+        <WoodTree position={[-5, 5, 5]} groundRef={props.groundRef} />
+        <WoodTree position={[5, 5, -5]} groundRef={props.groundRef} />
+        <WoodTree position={[5, 5, 5]} groundRef={props.groundRef} />
+        <WoodTree position={[5, 5, 5]} groundRef={props.groundRef} />
+        <WoodTree position={[-5, 5, 0]} groundRef={props.groundRef} />
+        <WoodTree position={[5, 5, 0]} groundRef={props.groundRef} />
+        <WoodTree position={[0, 5, -5]} groundRef={props.groundRef} />
+        <WoodTree position={[0, 5, 5]} groundRef={props.groundRef} />
+        <WoodTree position={[0, 0, 0]} groundRef={props.groundRef} />
+    </>
 }
 
 export function Physicstree() {
-    return <Canvas camera={{ position: [0, 4, 5] }}>
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        <pointLight position={[10, 10, -10]} />
+    const groundRef = useRef<Mesh>(null)
+    return <Canvas performance={{ min: 0.5 }} camera={{ position: [0, 2, 4] }} shadows>
+        <pointLight position={[10, 10, 6]} castShadow />
         <Physics gravity={[0, -9.8, 0]}>
-            <GroundWithTexture />
-            <WoodTree />
+            <GroundWithTexture ref={groundRef} />
+            <WoodTree position={[0, 0, 0]} groundRef={groundRef} /> 
+            {/* 
+            <Forest groundRef={groundRef} />
+            */}
             <Snow />
             <Perf headless />
             <Stars />
         </Physics>
-        <OrbitControls />
+        <AdaptiveDpr pixelated />
+        <AdaptiveEvents />
+        <OrbitControls target={[0, 1, 0]} />
     </Canvas >;
 }
 

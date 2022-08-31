@@ -49,17 +49,25 @@ export const Ground = forwardRef<Mesh, GroundProps>((props, ref) => {
         const vertex = new Vector3()
         let newPositionAttribute = []
         const positionAttribute = geom.getAttribute('position')
-        const heights = []
-        for (let i = 0; i < positionAttribute.count; i++) {
+        const heightLines = Array<number[]>(heightSegments + 1)
 
-            vertex.fromBufferAttribute(positionAttribute, i)
-            const z = heightFunction(vertex.x, vertex.y)
-            newPositionAttribute.push(vertex.x, vertex.y, z)
-            heights.push(z)
+        for (let y = 0; y <= heightSegments; y++)
+            heightLines[y] = []
+
+        for (let y = 0; y <= heightSegments; y++) {
+            const py = y * (widthSegments + 1)
+            //heightLines[heightSegments - y] = []
+            for (let x = 0; x <= widthSegments; x++) {
+                vertex.fromBufferAttribute(positionAttribute, py + x)
+                const z = heightFunction(vertex.x, vertex.y)
+                newPositionAttribute.push(vertex.x, vertex.y, z)
+                heightLines[heightSegments - y][x] = -z
+            }
         }
+        const heights = heightLines.flat()
         geom.setAttribute('position', new Float32BufferAttribute(newPositionAttribute, 3))
-        geom.attributes.position.needsUpdate = true
         geom.computeVertexNormals()
+        geom.attributes.position.needsUpdate = true
 
         return [heights, geom]
         /*
@@ -90,7 +98,7 @@ export const Ground = forwardRef<Mesh, GroundProps>((props, ref) => {
 
     return <group rotation-y={Math.PI / 2}>
         <group rotation-x={-Math.PI / 2}>
-            <mesh ref={ref} geometry={geometry}>
+            <mesh ref={ref} geometry={geometry}  castShadow receiveShadow>
                 {props.children}
             </mesh>
         </group>
