@@ -11,6 +11,7 @@ import './index.css';
 import { Physicstree } from './phystree';
 import { Snowtree } from './snowtreecomponent';
 import { Spheretree } from './spheretree';
+import { Roundleavestree } from './roundleaves/roundleaves'
 
 function PagedContent(props) {
     const params = useParams()
@@ -41,7 +42,8 @@ function Content() {
 
     const failedExperiments = [
         <Ammotree />,
-        <Spheretree />
+        <Spheretree />,
+        <Roundleavestree />,
     ]
 
     return <div className="content">
@@ -49,7 +51,7 @@ function Content() {
             <Routes>
                 {routeList(contents, "/page/")}
                 {routeList(failedExperiments, "/fail/")}
-                <Route path="/" element={<Navigate to="/page/1" />} />
+                <Route path="/" element={<Navigate to="/page/3" />} />
             </Routes>
         </Suspense>
     </div>;

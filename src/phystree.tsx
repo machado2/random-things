@@ -214,7 +214,7 @@ function Forest(props: { groundRef: RefObject<Mesh> }) {
 export function Physicstree() {
     const groundRef = useRef<Mesh>(null)
     return <Canvas performance={{ min: 0.5 }} camera={{ position: [0, 2, 4] }} shadows>
-        <pointLight position={[10, 10, 6]} castShadow />
+        <pointLight shadow-mapSize-height={3000} shadow-mapSize-width={3000} position={[10, 10, 6]} castShadow />
         <Physics gravity={[0, -1, 0]}  >
             <ambientLight intensity={0.3} />
             <GroundWithTexture ref={groundRef} />
