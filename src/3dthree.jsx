@@ -42,7 +42,7 @@ function Branch(props) {
 
 export function Threetree() {
 
-    return <Canvas>
+    return <Canvas frameloop='demand'>
         <pointLight position={[10, 10, 10]} />
         <pointLight position={[10, 10, -10]} />
         <Branch position={[0, -1, 0]} level={1} />
