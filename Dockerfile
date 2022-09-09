@@ -1,7 +1,5 @@
 FROM node as node
 WORKDIR /app
-RUN echo 1
-RUN pwd
 COPY package*.json ./
 COPY *yarn*.* ./
 COPY .yarn/ .yarn/
