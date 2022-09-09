@@ -1,60 +1,22 @@
-import { RigidBodyType } from "@dimforge/rapier3d-compat";
 import {
-  AdaptiveDpr,
-  AdaptiveEvents,
-  Box,
-  Cone,
-  Cylinder,
-  OrbitControls,
-  Sky,
-  Sphere,
-  Stars,
-  useTexture
+    AdaptiveDpr,
+    AdaptiveEvents, OrbitControls
 } from "@react-three/drei";
-import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import {
-  CylinderCollider,
-  Debug,
-  Physics,
-  RigidBody,
-  RigidBodyApi,
-  useSphericalJoint,
-  Vector3Array
+    Physics,
+    RigidBody,
+    RigidBodyApi,
+    useSphericalJoint,
+    Vector3Array
 } from "@react-three/rapier";
-import { Perf, usePerf } from "r3f-perf";
+import { Perf } from "r3f-perf";
 import React, {
-  forwardRef,
-  MutableRefObject,
-  Ref,
-  RefObject,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
+    RefObject, useRef
 } from "react";
 import {
-  BufferGeometry,
-  CanvasTexture,
-  Color,
-  CylinderBufferGeometry,
-  Euler,
-  IcosahedronBufferGeometry,
-  Material,
-  Matrix4,
-  Mesh,
-  MeshPhysicalMaterial,
-  MeshStandardMaterial,
-  MirroredRepeatWrapping,
-  Object3D,
-  PointLightShadow,
-  Quaternion,
-  Raycaster,
-  SphereBufferGeometry,
-  Texture,
-  TextureLoader,
-  Vector3
+    Euler
 } from "three";
-import { mergeBufferGeometries, SimplexNoise } from "three-stdlib";
 
 const angsize = Math.PI / 1.5;
 
