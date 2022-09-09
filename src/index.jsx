@@ -12,6 +12,7 @@ import { Physicstree } from './phystree';
 import { Snowtree } from './snowtreecomponent';
 import { Spheretree } from './spheretree';
 import { Roundleavestree } from './roundleaves/roundleaves'
+import { Jointstree } from './joints/joints'
 
 function PagedContent(props) {
     const params = useParams()
@@ -38,6 +39,7 @@ function Content() {
         <Snowtree />,
         <Threetree />,
         <Physicstree />,
+        <Jointstree />,
     ]
 
     const failedExperiments = [
