@@ -40,12 +40,12 @@ function Content() {
         <Threetree />,
         <Physicstree />,
         <Jointstree />,
-    ]
-
-    const failedExperiments = [
         <Ammotree />,
         <Spheretree />,
         <Roundleavestree />,
+    ]
+
+    const failedExperiments = [
     ]
 
     return <div className="content">
