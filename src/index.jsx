@@ -13,13 +13,15 @@ import { Snowtree } from './snowtreecomponent';
 import { Spheretree } from './spheretree';
 import { Roundleavestree } from './roundleaves/roundleaves'
 import { Jointstree } from './joints/joints'
+import Fab from '@mui/material/Fab';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 function PagedContent(props) {
     const params = useParams()
     const navigate = useNavigate()
     const page = parseInt(params.idpage ?? 1)
     return <>
-        {props.contents[page-1]}
+        {props.contents[page - 1]}
         <Pagination count={props.contents.length} defaultPage={page} onChange={(_, v) => navigate(props.urlprefix + v)} />
     </>
 }
@@ -29,10 +31,10 @@ function routeList(contents, urlprefix) {
         <Route path=":idpage" element={<PagedContent contents={contents} urlprefix={urlprefix} />} />
         <Route index element={<Navigate to={urlprefix + '1'} />} />
     </Route>
-}   
+}
 
 function Content() {
-    
+
     const params = useParams()
 
     const contents = [
@@ -59,5 +61,16 @@ function Content() {
     </div>;
 }
 
+const fabStyle = {
+    position: 'absolute',
+    bottom: 32,
+    right: 32,
+  };
+  
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<BrowserRouter><Content /></BrowserRouter>);
+root.render(<BrowserRouter>
+    <Fab color="primary" href="https://github.com/machado2/fbmac.one#readme" sx={fabStyle}>
+        <GitHubIcon />
+    </Fab>
+    <Content />
+</BrowserRouter>);
