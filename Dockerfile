@@ -6,7 +6,6 @@ COPY .yarn/ .yarn/
 RUN yarn install
 COPY . .
 RUN mkdir -p public/resume
-RUN yarn run resume-spartan-pdf
 RUN yarn run resume-elegant-html
 RUN yarn build
 

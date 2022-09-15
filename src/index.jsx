@@ -14,7 +14,7 @@ import { Physicstree } from './phystree';
 import { Roundleavestree } from './roundleaves/roundleaves';
 import { Snowtree } from './snowtreecomponent';
 import { Spheretree } from './spheretree';
-const resumeHtmlUrl = '/resume/fabio-machado-oliveira-resume.pdf'
+const resumeHtmlUrl = '/resume/fabio-machado-oliveira-resume.html'
 
 function PagedContent(props) {
     const params = useParams()
