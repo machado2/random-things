@@ -1,0 +1,140 @@
+{
+    "meta": {
+      "theme": "elegant"
+    },
+    "basics": {
+      "name": "Fábio Machado de Oliveira",
+      "label": "Developer",
+      "email": "machado2@gmail.com",
+      "website": "https://fbmac.one",
+      "picture": "https://avatars.githubusercontent.com/u/10177157?v=4",
+      "location": {
+        "city": "Canoas",
+        "countryCode": "BR"
+      },
+      "profiles": [
+        {
+          "username": "Fábio Machado de Oliveira",
+          "url": "https://www.linkedin.com/in/fabio-machado-de-oliveira-a560521a/",
+          "network": "linkedin"
+        },
+        {
+          "username": "machado2",
+          "url": "https://github.com/machado2/",
+          "network": "github"
+        }
+      ]
+    },
+    "education": [
+      {
+        "endDate": "2022-04-30",
+        "startDate": "2021-07-01",
+        "area": "Data Science and Artificial Intelligence",
+        "studyType": "Postgraduate",
+        "institution": "Uninter"
+      },
+      {
+          "endDate": "2018-03-07",
+          "startDate": "2005-03-01",
+          "area": "Analysis and Systems Development",
+          "studyType": "Tecnólogo",
+          "institution": "Universidade do Vale do Rio dos Sinos"
+      }
+    ],
+    "skills": [
+      {
+        "keywords": [
+          "C# / .NET Core",
+          "C / C++",
+          "TSQL / SQL Server"
+        ],
+        "level": "Master",
+        "name": "Programming Languages"
+      },
+      {
+        "keywords": ["Kotlin", "Javascript"],
+        "level": "Advanced",
+        "name": "Programming Languages"
+      },
+      {
+        "keywords": ["Node", "Python", "Postgres", "Rust", "Java", "Assembly", "PHP", "GO", "Powershell", "bash"],
+        "level": "Intermediate",
+        "name": "Programming Languages"
+      },
+      {
+        "keywords": ["git", "Azure Devops", "Azure Pipelines", "Kubernetes", "Docker"],
+        "name": "Tools"
+      }
+    ],
+    "work": [
+      {
+        "summary": "Linx S.A. is a Brazilian management software company and the largest software house in retail management systems in Latin America",
+        "website": "https://www.linx.com.br",
+        "name": "Linx S.A.",
+        "location": "Porto Alegre",
+        "position": "P&D Specialist",
+        "startDate": "2020-10-01",
+        "highlights": [
+            "Project to evolve the architecture of a legacy C++ backend systems for better scale",
+            "Creation of new APIs using .NET Core 6"
+        ]
+      },
+      {
+        "summary": "Auttar is a Brazillian electronic payment company owned by Santander",
+        "website": "https://www.auttar.com.br",
+        "name": "Auttar",
+        "location": "Porto Alegre",
+        "position": "IT Specialist",
+        "startDate": "2014-04-14",
+        "endDate": "2018-10-01",
+        "highlights": [
+          "Porting of C software to run on Linux embedded systems (vending machines, parkimeters, payment totems)",
+          "Porting of C software to run on credit card terminals",
+          "Programming of Android based payment terminals with Android native framework and Kotlin"
+        ]
+      },
+      {
+        "highlights": [
+          "Rewrote a vehicle plate recognition system with performance in mind and had a 100x throughput increase",
+          "Artificial intelligence and image recognition systems",
+          "Front ends in .NET MVC"
+        ],
+        "website": "http://www.compuletra.com.br",
+        "name": "Compuletra",
+        "position": "Systems Analyst",
+        "startDate": "2013-10-01",
+        "endDate": "2008-05-01"
+      },
+      {
+        "name": "Absoluta",
+        "website": "http://www.absoluta.net",
+        "position": "C Developer",
+        "startDate": "2006-04-01",
+        "endDate": "2008-05-01"
+      },
+      {
+        "name": "Grupo Meta",
+        "website": "http://www.meta.com.br",
+        "position": "Software Developer",
+        "startDate": "2004-08-01",
+        "endDate": "2006-02-01"
+      },
+      {
+        "name": "Powersoft",
+        "website": "http://www.powersoft.com.br",
+        "position": "Software developer",
+        "startDate": "2003-08-01",
+        "endDate": "2004-08-01"
+      }
+    ],
+    "projects": [{
+      "name": "fbmac.one",
+      "description": "Random experiments with web based graphics I'm doing as a hobby",
+      "keywords": [
+        "react", "threejs", "3d", "WebGL"
+      ],
+      "startDate": "2022-11-08",
+      "url": "https://fbmac.one"
+    }]
+  }
+  

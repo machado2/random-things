@@ -1,4 +1,5 @@
-import { CircularProgress, Pagination } from '@mui/material';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { AppBar, Button, CircularProgress, Pagination, Toolbar, Typography } from '@mui/material';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import {
@@ -8,13 +9,12 @@ import {
 import { Threetree } from './3dthree';
 import { Ammotree } from './ammotree';
 import './index.css';
+import { Jointstree } from './joints/joints';
 import { Physicstree } from './phystree';
+import { Roundleavestree } from './roundleaves/roundleaves';
 import { Snowtree } from './snowtreecomponent';
 import { Spheretree } from './spheretree';
-import { Roundleavestree } from './roundleaves/roundleaves'
-import { Jointstree } from './joints/joints'
-import Fab from '@mui/material/Fab';
-import GitHubIcon from '@mui/icons-material/GitHub';
+const resumeHtmlUrl = '/resume/fabio-machado-oliveira-resume.pdf'
 
 function PagedContent(props) {
     const params = useParams()
@@ -31,6 +31,24 @@ function routeList(contents, urlprefix) {
         <Route path=":idpage" element={<PagedContent contents={contents} urlprefix={urlprefix} />} />
         <Route index element={<Navigate to={urlprefix + '1'} />} />
     </Route>
+}
+
+function Title() {
+    const navigate = useNavigate()
+    return <>
+        <AppBar>
+            <Toolbar>
+                <Typography variant="h6">
+                    Fábio Machado de Oliveira
+                </Typography>
+                <Button sx={{'marginLeft': '1em'}} variant="contained" href={resumeHtmlUrl}>resume</Button>
+                <Button sx={{'marginLeft': '1em'}} variant="contained" href="https://github.com/machado2/fbmac.one#readme">
+                    <GitHubIcon />
+                </Button>
+            </Toolbar>
+        </AppBar>
+        <Toolbar />
+    </>
 }
 
 function Content() {
@@ -51,6 +69,7 @@ function Content() {
     ]
 
     return <div className="content">
+        <Title />
         <Suspense fallback={<CircularProgress />}>
             <Routes>
                 {routeList(contents, "/page/")}
@@ -61,16 +80,7 @@ function Content() {
     </div>;
 }
 
-const fabStyle = {
-    position: 'absolute',
-    bottom: 32,
-    right: 32,
-  };
-  
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<BrowserRouter>
-    <Fab color="primary" href="https://github.com/machado2/fbmac.one#readme" sx={fabStyle}>
-        <GitHubIcon />
-    </Fab>
     <Content />
 </BrowserRouter>);
