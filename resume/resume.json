@@ -33,7 +33,7 @@
             "highlights": [
                 "Project to evolve the architecture of a legacy C++ backend systems for better scale. Using C++, C#, ASP.NET Core in it's components",
                 "Migrated the repositories from a legacy version control system to git",
-                "Recreated the UI of a monitoring system using Javascript and vue.js",
+                "Recreated the UI of a monitoring system using JavaScript and vue.js",
                 "Created a module for one of our installers in Go/Golang",
                 "Moved some applications to docker",
                 "Implented new pipelines on Azure CI/CD system",
@@ -73,6 +73,15 @@
             "summary": "Worked over a software used to monitor the borders of Brazil, that use cameras to read the plates of vehicles crossing the borders.\n\nThe main technologies involved were C++, SQL Server, C# and the .NET Framework.\n\nThe software used multiple engines for character recognition, I started with a working proof of concept from a former employee, rewrote it from Delphi to C++, and optimized it for performance. And worked on several related applications in this ecosystem."
         },
         {
+            "name": "Absoluta",
+            "website": "http://www.absoluta.net",
+            "position": "C Developer",
+            "startDate": "2006-04",
+            "endDate": "2008-05",
+            "company": "Absoluta",
+            "summary": "A C/C++ based web application used by thousands of callcenter operators at the Terra internet service provider (https://www.terra.com.br/). It also used SQL for querying an Oracle Database, and JavaScript.\n\nThis system required a lot of care with performance to work at a very demanding scale for the hardware we had at the time."
+        },
+        {
             "name": "Grupo Meta",
             "website": "http://www.meta.com.br",
             "position": "Software Developer",
@@ -90,22 +99,13 @@
             ]
         },
         {
-            "name": "Absoluta",
-            "website": "http://www.absoluta.net",
-            "position": "C Developer",
-            "startDate": "2006-04",
-            "endDate": "2008-05",
-            "company": "Absoluta",
-            "summary": "A C/C++ based web application used by thousands of callcenter operators at the Terra internet service provider (https://www.terra.com.br/). It also used SQL for querying an Oracle Database, and Javascript.\n\nThis system required a lot of care with performance to work at a very demanding scale for the hardware we had at the time."
-        },
-        {
             "name": "Powersoft",
             "website": "http://www.powersoft.com.br",
             "position": "Software developer",
             "startDate": "2003-08",
             "endDate": "2004-08",
             "company": "Powersoft",
-            "summary": "Maintained a Java + Javascript + SQL web based cloth store"
+            "summary": "Maintained a Java + JavaScript + SQL web-based cloth store"
         }
     ],
     "education": [
@@ -137,7 +137,7 @@
         {
             "keywords": [
                 "Kotlin",
-                "Javascript"
+                "JavaScript"
             ],
             "level": "Advanced",
             "name": "Programming Languages"
