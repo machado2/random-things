@@ -1,5 +1,4 @@
-import GitHubIcon from '@mui/icons-material/GitHub';
-import { AppBar, Button, CircularProgress, Pagination, Toolbar, Typography } from '@mui/material';
+import { CircularProgress, Pagination } from '@mui/material';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import {
@@ -14,7 +13,6 @@ import { Physicstree } from './phystree';
 import { Roundleavestree } from './roundleaves/roundleaves';
 import { Snowtree } from './snowtreecomponent';
 import { Spheretree } from './spheretree';
-const resumeHtmlUrl = '/resume/fabio-machado-oliveira-resume.html'
 
 function PagedContent(props) {
     const params = useParams()
@@ -33,28 +31,7 @@ function routeList(contents, urlprefix) {
     </Route>
 }
 
-function Title() {
-    const navigate = useNavigate()
-    return <>
-        <AppBar>
-            <Toolbar>
-                <Typography variant="h6">
-                    Fábio Machado de Oliveira
-                </Typography>
-                <Button sx={{'marginLeft': '1em'}} variant="contained" href={resumeHtmlUrl}>resume</Button>
-                <Button sx={{'marginLeft': '1em'}} variant="contained" href="https://github.com/machado2/fbmac.one#readme">
-                    <GitHubIcon />
-                </Button>
-            </Toolbar>
-        </AppBar>
-        <Toolbar />
-    </>
-}
-
 function Content() {
-
-    const params = useParams()
-
     const contents = [
         <Snowtree />,
         <Threetree />,
@@ -69,7 +46,6 @@ function Content() {
     ]
 
     return <div className="content">
-        <Title />
         <Suspense fallback={<CircularProgress />}>
             <Routes>
                 {routeList(contents, "/page/")}
