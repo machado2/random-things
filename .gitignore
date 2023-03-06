@@ -33,5 +33,4 @@ dist/
 !.yarn/versions
 
 .idea/
-/yarn.lock
 /public/resume/
