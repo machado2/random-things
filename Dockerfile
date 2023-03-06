@@ -5,8 +5,6 @@ COPY *yarn*.* ./
 COPY .yarn/ .yarn/
 RUN yarn install
 COPY . .
-RUN mkdir -p public/resume
-RUN yarn run resume-elegant-html
 RUN yarn build
 
 FROM nginx:alpine
