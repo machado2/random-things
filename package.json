@@ -29,13 +29,8 @@
     "simplex-noise": "^4.0.0",
     "three": "^0.139.2",
     "three-stdlib": "^2.14.3",
-    "use-ammojs": "^0.2.21",
     "uuid": "^8.3.2",
     "web-vitals": "*"
-  },
-  "peerDependencies": {
-    "@react-three/fiber": "*",
-    "ammo.js": "*"
   },
   "scripts": {
     "start": "vite",

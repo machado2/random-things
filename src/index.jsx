@@ -6,7 +6,6 @@ import {
     useParams
 } from "react-router-dom";
 import { Threetree } from './3dthree';
-import { Ammotree } from './ammotree';
 import './index.css';
 import { Jointstree } from './joints/joints';
 import { Physicstree } from './phystree';
@@ -37,7 +36,6 @@ function Content() {
         <Threetree />,
         <Physicstree />,
         <Jointstree />,
-        <Ammotree />,
         <Spheretree />,
         <Roundleavestree />,
     ]

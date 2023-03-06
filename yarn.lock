@@ -603,10 +603,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/core-downloads-tracker@npm:^5.11.11":
-  version: 5.11.11
-  resolution: "@mui/core-downloads-tracker@npm:5.11.11"
-  checksum: 8c79c1a760eee497fb65f867117251adaaca435a8813394c6bf3d014d5e26148af1ff89beef2f50cea76c43412b722d3bd78bc71d8fc85aadcd57c8b22f17ec6
+"@mui/core-downloads-tracker@npm:^5.11.12":
+  version: 5.11.12
+  resolution: "@mui/core-downloads-tracker@npm:5.11.12"
+  checksum: db9f8497da36455bcd6590aceae0a364fe3107db6067d96612e3b0d8993bc3e0f0d66dbe6fd09d2d99b5a811b20d019682cb96a39d7570948cd644f4f8a32404
   languageName: node
   linkType: hard
 
@@ -627,15 +627,15 @@ __metadata:
   linkType: hard
 
 "@mui/material@npm:^5.10.2":
-  version: 5.11.11
-  resolution: "@mui/material@npm:5.11.11"
+  version: 5.11.12
+  resolution: "@mui/material@npm:5.11.12"
   dependencies:
     "@babel/runtime": ^7.21.0
     "@mui/base": 5.0.0-alpha.119
-    "@mui/core-downloads-tracker": ^5.11.11
-    "@mui/system": ^5.11.11
+    "@mui/core-downloads-tracker": ^5.11.12
+    "@mui/system": ^5.11.12
     "@mui/types": ^7.2.3
-    "@mui/utils": ^5.11.11
+    "@mui/utils": ^5.11.12
     "@types/react-transition-group": ^4.4.5
     clsx: ^1.2.1
     csstype: ^3.1.1
@@ -655,16 +655,16 @@ __metadata:
       optional: true
     "@types/react":
       optional: true
-  checksum: 132af11ab4aff98c2c98dd22f10dcbc58221a8b3949f9ff3747c76362acaf1b2fb07ce8afd1a12ed905ebf1a7f778f7eb508a08d63fe56ea2bd703699e51e5cf
+  checksum: 0bc03f700683e0a0d234c3b2d2a9ccd875af2bef5fce1946f1409afbb3fb69043c77a96ad9c6cd8f942ef793b8a198aaefe058a31d38c0452711841e2bd51c03
   languageName: node
   linkType: hard
 
-"@mui/private-theming@npm:^5.11.11":
-  version: 5.11.11
-  resolution: "@mui/private-theming@npm:5.11.11"
+"@mui/private-theming@npm:^5.11.12":
+  version: 5.11.12
+  resolution: "@mui/private-theming@npm:5.11.12"
   dependencies:
     "@babel/runtime": ^7.21.0
-    "@mui/utils": ^5.11.11
+    "@mui/utils": ^5.11.12
     prop-types: ^15.8.1
   peerDependencies:
     "@types/react": ^17.0.0 || ^18.0.0
@@ -672,7 +672,7 @@ __metadata:
   peerDependenciesMeta:
     "@types/react":
       optional: true
-  checksum: e1db9423d000fc377201dd74a78f8f1cb627fade1b17f83171d4d8a18c1f9bb24e5fa86b1e08e3766961a0be23f84d87a6323da25e9bc08fc21b44288fa8d2b9
+  checksum: 02bee3bd2ae5223e92bdc0c9464386d587adabc7ed24a3fb3aa4659dad189bf02935b482fa56ad431c51fc1ede79bed24b921e0db26f965ad593ebeed2251a26
   languageName: node
   linkType: hard
 
@@ -697,15 +697,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/system@npm:^5.11.11":
-  version: 5.11.11
-  resolution: "@mui/system@npm:5.11.11"
+"@mui/system@npm:^5.11.12":
+  version: 5.11.12
+  resolution: "@mui/system@npm:5.11.12"
   dependencies:
     "@babel/runtime": ^7.21.0
-    "@mui/private-theming": ^5.11.11
+    "@mui/private-theming": ^5.11.12
     "@mui/styled-engine": ^5.11.11
     "@mui/types": ^7.2.3
-    "@mui/utils": ^5.11.11
+    "@mui/utils": ^5.11.12
     clsx: ^1.2.1
     csstype: ^3.1.1
     prop-types: ^15.8.1
@@ -721,7 +721,7 @@ __metadata:
       optional: true
     "@types/react":
       optional: true
-  checksum: 4f91a2855e50d8cac629424f9cd8bac2aa2c81d0a307d6a6db552f035da28e3b7916fc3a5d7aa98e448962cf06f4ff066f8cbf37ac39886cffd27f755ea2a012
+  checksum: a357b26b34ba3fe9aa6d2e826e94a9e8c6fe4bb4d20ac77b7a8688ff414ac7df77ff537837dd36e20aa9be8b9bb9c1ecab6ad2af057b152e1d0c9ea3234aefbf
   languageName: node
   linkType: hard
 
@@ -737,9 +737,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/utils@npm:^5.11.11":
-  version: 5.11.11
-  resolution: "@mui/utils@npm:5.11.11"
+"@mui/utils@npm:^5.11.11, @mui/utils@npm:^5.11.12":
+  version: 5.11.12
+  resolution: "@mui/utils@npm:5.11.12"
   dependencies:
     "@babel/runtime": ^7.21.0
     "@types/prop-types": ^15.7.5
@@ -748,7 +748,7 @@ __metadata:
     react-is: ^18.2.0
   peerDependencies:
     react: ^17.0.0 || ^18.0.0
-  checksum: 268ac11cfcf5acc90137502f1fb999c4b5a4a05b00769056f48a15c9aa0c358b2ce93655c04929136282ed2f3b8b0a62d12653449c3463ed4b79723764ab6d71
+  checksum: aa65847c5ab3ae69f0fb156b1b79adbf6285270de4ff1fa87e098930988aa8d88ef00b5bf12c62e75c77077a9f1b84a150edae8637ca416e6c4c0edff8092d90
   languageName: node
   linkType: hard
 
@@ -1349,22 +1349,6 @@ __metadata:
     clean-stack: ^2.0.0
     indent-string: ^4.0.0
   checksum: 1101a33f21baa27a2fa8e04b698271e64616b886795fd43c31068c07533c7b3facfcaf4e9e0cab3624bd88f729a592f1c901a1a229c9e490eafce411a8644b79
-  languageName: node
-  linkType: hard
-
-"ammo-debug-drawer@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "ammo-debug-drawer@npm:1.0.1"
-  peerDependencies:
-    ammo.js: "*"
-  checksum: 75966dd472f3365bdf54e7e194f898a560d35505c1f9c5422cee84988cc1b5971f8a2ff52f28a85dcfd5f03f10af4d84187745e926b06b45aaafa5c55283d031
-  languageName: node
-  linkType: hard
-
-ammo.js@kripken/ammo.js:
-  version: 0.0.2
-  resolution: "ammo.js@https://github.com/kripken/ammo.js.git#commit=6ec2ce66f2fbd06fae2c0013274cffdacccc3343"
-  checksum: 385bbd3390ec19de36e1827bd54e5f8ebd83134adc41485d7b92a7830415dccb13dfd8308613e33a6da3e0aa7c8c5e0d836896f76ad9ea85d7e66e574c0315b4
   languageName: node
   linkType: hard
 
@@ -2272,13 +2256,9 @@ ammo.js@kripken/ammo.js:
     three: ^0.139.2
     three-stdlib: ^2.14.3
     typescript: ^4.7.4
-    use-ammojs: ^0.2.21
     uuid: ^8.3.2
     vite: ^3.0.9
     web-vitals: "*"
-  peerDependencies:
-    "@react-three/fiber": "*"
-    ammo.js: "*"
   languageName: unknown
   linkType: soft
 
@@ -4218,7 +4198,7 @@ ammo.js@kripken/ammo.js:
   languageName: node
   linkType: hard
 
-"three-stdlib@npm:^2.14.3, three-stdlib@npm:^2.15.0, three-stdlib@npm:^2.21.8, three-stdlib@npm:^2.4.0":
+"three-stdlib@npm:^2.14.3, three-stdlib@npm:^2.15.0, three-stdlib@npm:^2.21.8":
   version: 2.21.8
   resolution: "three-stdlib@npm:2.21.8"
   dependencies:
@@ -4364,22 +4344,6 @@ ammo.js@kripken/ammo.js:
   dependencies:
     prepend-http: ^2.0.0
   checksum: 1040e357750451173132228036aff1fd04abbd43eac1fb3e4fca7495a078bcb8d33cb765fe71ad7e473d9c94d98fd67adca63bd2716c815a2da066198dd37217
-  languageName: node
-  linkType: hard
-
-"use-ammojs@npm:^0.2.21":
-  version: 0.2.21
-  resolution: "use-ammojs@npm:0.2.21"
-  dependencies:
-    ammo-debug-drawer: ^1.0.1
-    ammo.js: kripken/ammo.js
-    stats.js: ^0.17.0
-    three-stdlib: ^2.4.0
-  peerDependencies:
-    "@react-three/fiber": ^7.0.6
-    react: ">=16"
-    three: ^0.130.0
-  checksum: 8bc4e08c721eb68d985b247e42be377c1b2336e37171eab2f905add8019c20d71e4cc481c5237d3b9ef553cb4b2bb9c1b9c5be1410f2c0f9fe4805aa0927bc5f
   languageName: node
   linkType: hard
 
